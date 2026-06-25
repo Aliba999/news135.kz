@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWS 135 .KZ | Спорт</title>
+    <style>
+        .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Лого слева, поиск справа */
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    width: 250px;
+}
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap');
+        :root { --primary-blue: #0B1F3A; --accent-red: #D62828; --bg-gray: #F1F5F9; --text-dark: #1E293B; --border-line: #E2E8F0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-gray); color: var(--text-dark); padding-bottom: 40px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
+        a { color: inherit; text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--accent-red); }
+        .news-card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); transition: transform 0.2s; }
+        .news-card:hover { transform: translateY(-2px); }
+        .top-bar { background: #061324; padding: 8px 0; }
+        .top-bar-wrap { display: flex; justify-content: flex-end; gap: 10px; }
+        .lang-btn { background: rgba(255,255,255,0.1); color: #fff; border: none; padding: 4px 12px; font-size: 12px; font-weight: 600; border-radius: 4px; cursor: pointer; }
+        .lang-btn:hover, .lang-btn.active { background: var(--accent-red); }
+        header { background: var(--primary-blue); padding: 20px 0; }
+        .logo-link { display: inline-block; background: #fff; padding: 6px 12px; border-radius: 6px; }
+        .logo-img { max-height: 65px; display: block; }
+        .block-nav { background: var(--accent-red); padding: 12px 0; }
+        .nav-links { display: flex; justify-content: center; gap: 30px; color: #fff; font-size: 14px; font-weight: 700; text-transform: uppercase; flex-wrap: wrap; }
+        .nav-links a { position: relative; }
+        .nav-links a.active::after, .nav-links a:hover::after { content: ''; display: block; width: 100%; height: 2px; background: #fff; position: absolute; bottom: -4px; left: 0; }
+        .main-layout { display: flex; flex-direction: column; gap: 30px; margin-top: 30px; }
+        .page-title { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--primary-blue); border-left: 6px solid var(--accent-red); padding-left: 15px; }
+        .news-feed { display: flex; flex-direction: column; gap: 20px; }
+        .feed-item { display: flex; gap: 25px; align-items: center; }
+        .feed-thumb { width: 180px; height: 120px; background: #cbd5e1; border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #475569; border: 2px dashed #94a3b8; }
+        .feed-details h3 { font-size: 20px; color: var(--primary-blue); margin-bottom: 8px; }
+        .feed-details p { color: #475569; font-size: 14.5px; line-height: 1.5; }
+        .info-section { display: grid; grid-template-columns: 1.5fr 1fr; gap: 25px; }
+        .cat-box { background: #fff; border-radius: 8px; padding: 20px; }
+        .cat-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--primary-blue); margin-bottom: 15px; border-left: 5px solid var(--accent-red); padding-left: 10px; }
+        .about-text p { margin-bottom: 12px; font-size: 14.5px; line-height: 1.6; color: #475569; }
+        .about-text p:last-child { margin-bottom: 0; }
+        .contacts-card { background: var(--primary-blue) !important; color: #fff; }
+        .contacts-card .cat-title { color: #fff; }
+        .contact-row { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .contact-row span { font-weight: bold; color: #60a5fa; }
+        .block-footer { background: #061324; padding: 25px 0; text-align: center; color: #94a3b8; font-size: 13px; margin-top: 20px; border-top: 4px solid var(--accent-red); }
+        @media (max-width: 768px) { .nav-links { gap: 10px 15px; font-size: 12px; } .feed-item { flex-direction: column; align-items: flex-start; } .feed-thumb { width: 100%; height: 160px; } .info-section { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="container top-bar-wrap">
+        <button class="lang-btn active" onclick="changeLang('ru')">РУС</button>
+        <button class="lang-btn" onclick="changeLang('kz')">ҚАЗ</button>
+    </div>
+</div>
+
+<header>
+    <div class="container header-content">
+        <a href="index.html" class="logo-link">
+            <img src="logo_new.jpg" alt="NEWS 135" class="logo-img">
+        </a>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Поиск..." onkeyup="filterNews()">
+        </div>
+    </div>
+</header>
+
+<nav class="block-nav">
+    <div class="container">
+        <div class="nav-links">
+            <a href="index.html" id="m-main">Главная</a>
+            <a href="kazakhstan.html" id="m-kz">Казахстан</a>
+            <a href="world.html" id="m-world">Мир</a>
+            <a href="sport.html" id="m-sport" class="active">Спорт</a>
+            <a href="business.html" id="m-biz">Бизнес</a>
+            <a href="tech.html" id="m-tech">Технологии</a>
+            <a href="index.html#about-sec" id="m-about">О нас</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container main-layout">
+    <h1 class="page-title" id="page-heading">Новости спорта</h1>
+
+    <div class="news-feed">
+        <div class="feed-item news-card">
+            <div class="feed-thumb" id="img-1">[ Фото ]</div>
+            <div class="feed-details">
+                <h3><a href="article.html" id="s1-t">Триумф казахстанских боксеров на международном турнире</a></h3>
+                <p id="s1-d">Наши спортсмены завоевали несколько золотых медалей, показав высочайший уровень подготовки и тактического мастерства на престижном мировом первенстве.</p>
+            </div>
+        </div>
+        <div class="feed-item news-card">
+            <div class="feed-thumb" id="img-2">[ Фото ]</div>
+            <div class="feed-details">
+                <h3><a href="article.html" id="s2-t">Громкая сенсация в европейском футбольном чемпионате</a></h3>
+                <p id="s2-d">Аутсайдер турнира одержал уверенную победу над явным фаворитом, полностью перевернув турнирную таблицу и ожидания футбольных аналитиков.</p>
+            </div>
+        </div>
+        <div class="feed-item news-card">
+            <div class="feed-thumb" id="img-3">[ Фото ]</div>
+            <div class="feed-details">
+                <h3><a href="article.html" id="s3-t">Подготовка национальной сборной к предстоящим играм</a></h3>
+                <p id="s3-d">Тренерский штаб раскрыл детали обновленной программы тренировок и озвучил финальный состав команды, которая представит страну на международной арене.</p>
+            </div>
+        </div>
+        <div class="feed-item news-card">
+            <div class="feed-thumb" id="img-4">[ Фото ]</div>
+            <div class="feed-details">
+                <h3><a href="article.html" id="s4-t">Развитие массового и юношеского спорта в регионах</a></h3>
+                <p id="s4-d">В нескольких областях завершилось строительство современных спортивных комплексов, открывающих новые возможности для тренировок молодых талантов.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-section" id="about-sec">
+        <div class="cat-box">
+            <div class="cat-title" id="lbl-about">О нас</div>
+            <div class="about-text">
+                <p id="ab-p1">News135.kz — независимый информационный портал, оперативно освещающий главные события Казахстана и мира. Наша команда ежедневно следит за новостной повесткой, чтобы предоставлять читателям актуальную, достоверную и объективную информацию.</p>
+                <p id="ab-p2">Мы публикуем новости политики, экономики, общества, технологий, культуры, спорта и других сфер, уделяя особое внимание событиям, которые влияют на жизнь граждан и развитие страны.</p>
+                <p id="ab-p3">Основными принципами работы News135.kz являются точность, беспристрастность и ответственность перед аудиторией. Каждый материал проходит проверку источников, а редакционная политика направлена на соблюдение журналистских стандартов и этических норм.</p>
+                <p id="ab-p4">Наша цель — помочь читателям быстро ориентироваться в потоке информации, понимать суть происходящих событий и получать доступ к качественной журналистике в удобном формате.</p>
+                <p><b id="ab-p5">News135.kz — новости, которым доверяют.</b></p>
+            </div>
+        </div>
+        <div class="cat-box contacts-card">
+            <div class="cat-title" id="lbl-contacts">Контакты</div>
+            <div class="contact-row"><span>Email:</span><a href="mailto:aytenova80@bk.ru">aytenova80@bk.ru</a></div>
+            <div class="contact-row"><span>Тел:</span><a href="tel:+77773456565">+7 777 345 6565</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="block-footer"><div class="container">&copy; 2026 NEWS135.KZ. Все права защищены.</div></div>
+
+<script>
+    function filterNews() {
+   
+    let input = document.getElementById('search-input').value.toLowerCase();
+    
+    
+    let newsItems = document.querySelectorAll('.news-card');
+
+    newsItems.forEach(item => {
+       
+        let title = item.querySelector('h3').textContent.toLowerCase();
+        
+        
+        if (title.includes(input)) {
+            item.style.display = "flex"; 
+        } else {
+            item.style.display = "none"; 
+        }
+    });
+}
+    const translations = {
+        ru: {
+            mMain: "Главная", mKz: "Казахстан", mWorld: "Мир", mSport: "Спорт", mBiz: "Бизнес", mTech: "Технологии", mAbout: "О нас",
+            heading: "Новости спорта", img: "[ Фото ]",
+            s1t: "Триумф казахстанских боксеров на международном турнире", s1d: "Наши спортсмены завоевали несколько золотых медалей, показав высочайший уровень подготовки и тактического мастерства на престижном мировом первенстве.",
+            s2t: "Громкая сенсация в европейском футбольном чемпионате", s2d: "Аутсайдер турнира одержал уверенную победу над явным фаворитом, полностью перевернув турнирную таблицу и ожидания футбольных аналитиков.",
+            s3t: "Подготовка национальной сборной к предстоящим играм", s3d: "Тренерский штаб раскрыл детали обновленной программы тренировок и озвучил финальный состав команды, которая представит страну на международной арене.",
+            s4t: "Развитие массового и юношеского спорта в регионах", s4d: "В нескольких областях завершилось строительство современных спортивных комплексов, открывающих новые возможности для тренировок молодых талантов.",
+            lblAbout: "О нас", lblContacts: "Контакты",
+            abP1: "News135.kz — независимый информационный портал, оперативно освещающий главные события Казахстана и мира. Наша команда ежедневно следит за новостной повесткой, чтобы предоставлять читателям актуальную, достоверную и объективную информацию.",
+            abP2: "Мы публикуем новости политики, экономики, общества, технологий, культуры, спорта и других сфер, уделяя особое внимание событиям, которые влияют на жизнь граждан и развитие страны.",
+            abP3: "Основными принципами работы News135.kz являются точность, беспристрастность и ответственность перед аудиторией. Каждый материал проходит проверку источников, а редакционная политика направлена на соблюдение журналистских стандартов и этических норм.",
+            abP4: "Наша цель — помочь читателям быстро ориентироваться в потоке информации, понимать суть происходящих событий и получать доступ к качественной журналистике в удобном формате.",
+            abP5: "News135.kz — новости, которым доверяют."
+        },
+        kz: {
+            mMain: "Басты бет", mKz: "Қазақстан", mWorld: "Әлем", mSport: "Спорт", mBiz: "Бизнес", mTech: "Технологиялар", mAbout: "Біз туралы",
+            heading: "Спорт жаңалықтары", img: "[ Сурет ]",
+            s1t: "Халықаралық турнирдегі қазақстандық боксшылардың жеңісі", s1d: "Біздің спортшылар беделді әлемдік біріншілікте жоғары дайындық пен тактикалық шеберлік көрсетіп, бірнеше алтын медаль жеңіп алды.",
+            s2t: "Еуропа футбол чемпионатындағы үлкен сенсация", s2d: "Турнирдің аутсайдері айқын фаворитті сенімді түрде жеңіп, турнирлік кестені және футбол сарапшыларының болжамдарын толығымен өзгертті.",
+            s3t: "Ұлттық құраманың алдағы ойындарға дайындығы", s3d: "Жаттықтырушылар штабы жаңартылған жаттығу бағдарламасының егжей-тегжейін ашып, ел намысын халықаралық аренада қорғайтын команданың соңғы құрамын жариялады.",
+            s4t: "Аймақтарда бұқаралық және жасөспірімдер спортын дамыту", s4d: "Бірнеше облыста жас таланттарды жаттықтыруға жаңа мүмкіндіктер ашатын заманауи спорт кешендерінің құрылысы аяқталды.",
+            lblAbout: "Біз туралы", lblContacts: "Байланыс",
+            abP1: "News135.kz — Қазақстан мен әлемдегі басты оқиғаларды жедел көрсететін тәуелсіз ақпараттық портал. Біздің команда оқырмандарға өзекті, шынайы және объективті ақпарат беру үшін күнделікті жаңалықтар ағынын қадағалайды.",
+            abP2: "Біз саясат, экономика, қоғам, технология, мәдениет, спорт және басқа да салалардың жаңалықтарын жариялаймыз, бұл ретте азаматтардың өміріне және елдің дамуына әсер ететін оқиғаларға ерекше назар аударамыз.",
+            abP3: "News135.kz жұмысының негізгі принциптері — дәлдік, бейтараптылық және аудитория алдындағы жауапкершілік. Әрбір материал дереккөздер тексеруінен өтеді, ал редакциялық саясат журналистік стандарттар мен әдеп нормаларын сақтауға бағытталған.",
+            abP4: "Біздің мақсатымыз — оқырмандарға ақпарат ағынында тез бағдар алуға, болып жатқан оқиғалардың мәнін түсінуге және сапалы журналистикаға ыңғайлы форматта қол жеткізуге көмектесу.",
+            abP5: "News135.kz — сенім білдіретін жаңалықтар."
+        }
+    };
+
+    function changeLang(lang) {
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        if(event && event.target) event.target.classList.add('active');
+        const t = translations[lang];
+        document.getElementById('m-main').textContent = t.mMain;
+        document.getElementById('m-kz').textContent = t.mKz;
+        document.getElementById('m-world').textContent = t.mWorld;
+        document.getElementById('m-sport').textContent = t.mSport;
+        document.getElementById('m-biz').textContent = t.mBiz;
+        document.getElementById('m-tech').textContent = t.mTech;
+        document.getElementById('m-about').textContent = t.mAbout;
+        document.getElementById('page-heading').textContent = t.heading;
+        document.getElementById('s1-t').textContent = t.s1t;
+        document.getElementById('s1-d').textContent = t.s1d;
+        document.getElementById('s2-t').textContent = t.s2t;
+        document.getElementById('s2-d').textContent = t.s2d;
+        document.getElementById('lbl-about').textContent = t.lblAbout;
+        document.getElementById('lbl-contacts').textContent = t.lblContacts;
+        document.getElementById('ab-p1').textContent = t.abP1; }
+</script>
+</body>
+</html>
