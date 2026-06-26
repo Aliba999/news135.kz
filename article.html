@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWS 135 .KZ | Чтение новости</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Лого слева, поиск справа */
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    width: 250px;
+}
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-blue: #0B1F3A;
+            --accent-red: #D62828;
+            --bg-gray: #F1F5F9;
+            --text-dark: #1E293B;
+            --border-line: #E2E8F0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-gray); color: var(--text-dark); padding-bottom: 40px; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
+        
+        a { color: inherit; text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--accent-red); }
+        ul { list-style: none; }
+        
+        .news-card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
+
+        /* =======================================================
+           ШАПКА И ЯЗЫКИ (КОПИЯ С ГЛАВНОЙ ДЛЯ ЕДИНООБРАЗИЯ)
+           ======================================================= */
+        .top-bar { background: #061324; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .top-bar-wrap { display: flex; justify-content: flex-end; gap: 10px; }
+        .lang-btn { background: rgba(255,255,255,0.1); color: #fff; border: none; padding: 4px 12px; font-size: 12px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+        .lang-btn:hover, .lang-btn.active { background: var(--accent-red); }
+
+        header { background: var(--primary-blue); padding: 20px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .header-wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+        
+        .logo-link { display: block; background: #fff; padding: 6px 12px; border-radius: 6px; }
+        .logo-img { max-height: 65px; width: auto; display: block; }
+
+        /* НАВИГАЦИЯ */
+        .block-nav { background: var(--accent-red); padding: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .nav-links { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 15px 30px; color: #fff; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-links a { position: relative; }
+        .nav-links a::after { content: ''; display: block; width: 0; height: 2px; background: #fff; transition: width 0.3s; position: absolute; bottom: -4px; left: 0; }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* =======================================================
+           СТРУКТУРА СТАТЬИ
+           ======================================================= */
+        .main-layout { display: flex; flex-direction: column; gap: 30px; margin-top: 30px; margin-bottom: 30px; }
+        
+        .article-container { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
+        
+        /* Левая колонка — сама статья */
+        .article-body { background: #fff; border-radius: 8px; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
+        .article-meta { font-size: 13px; color: #64748b; margin-bottom: 15px; font-weight: 600; display: flex; gap: 15px; }
+        .article-title { font-size: 28px; color: var(--primary-blue); margin-bottom: 20px; font-weight: 700; line-height: 1.3; }
+        .article-main-img { width: 100%; height: 380px; background: #cbd5e1; border-radius: 6px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; color: #475569; font-weight: 600; border: 2px dashed #94a3b8; }
+        
+        .article-text p { font-size: 16px; line-height: 1.7; color: #334155; margin-bottom: 18px; text-align: justify; }
+        .back-link { display: inline-block; margin-top: 15px; color: var(--accent-red); font-weight: 700; font-size: 14px; text-transform: uppercase; }
+        .back-link:hover { text-decoration: underline; }
+
+        /* Правая колонка — боковая панель (Читайте также) */
+        .sidebar-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: #fff; background: var(--primary-blue); padding: 8px 16px; border-radius: 6px 6px 0 0; letter-spacing: 0.5px; }
+        .sidebar-content { background: #fff; border-radius: 0 0 8px 8px; padding: 10px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
+        .sidebar-list li { padding: 12px 0; border-bottom: 1px solid var(--border-line); font-size: 14px; font-weight: 600; line-height: 1.4; }
+        .sidebar-list li:last-child { border-bottom: none; }
+
+        /* =======================================================
+           БЛОКИ: О НАС И КОНТАКТЫ
+           ======================================================= */
+        .info-section { display: grid; grid-template-columns: 1.5fr 1fr; gap: 25px; }
+        .cat-box { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
+        .cat-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--primary-blue); margin-bottom: 15px; letter-spacing: 0.5px; border-left: 5px solid var(--accent-red); padding-left: 10px; }
+        
+        .about-card p { font-size: 14.5px; line-height: 1.6; color: #334155; margin-bottom: 12px; }
+        .about-card p:last-child { margin-bottom: 0; font-weight: 600; color: var(--primary-blue); }
+        
+        .contacts-card { background: var(--primary-blue) !important; color: #fff; }
+        .contacts-card .cat-title { color: #fff; border-left-color: var(--accent-red); }
+        .contact-row { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; font-size: 16px; }
+        .contact-row span { font-weight: bold; color: #60a5fa; }
+        .contact-row a:hover { color: #60a5fa; }
+
+        /* ФУТЕР */
+        .custom-footer {
+    background: #1e293b; /* Темно-синий цвет, как у вас */
+    color: #fff;
+    padding: 40px 0 20px;
+    margin-top: 50px;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.footer-col { flex: 1; min-width: 250px; }
+.footer-col h3 { margin-bottom: 15px; color: #60a5fa; }
+.footer-col p { font-size: 14px; margin-bottom: 10px; color: #cbd5e1; }
+.social-links { display: flex; gap: 10px; margin-top: 15px; }
+.social-icon {
+    width: 35px; height: 35px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; text-decoration: none; font-weight: bold;
+}
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #334155;
+    margin-top: 30px;
+    padding-top: 20px;
+    font-size: 12px;
+    color: #64748b;
+}
+.custom-footer {
+    background: #0B1F3A; /* Тот самый темно-синий цвет */
+    padding: 30px 0;
+    margin-top: 50px;
+    border-top: 4px solid #D62828; /* Красная линия */
+}
+
+.footer-col {
+    max-width: 400px;
+}
+
+.footer-col p {
+    color: #cbd5e1;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+            .header-wrap { flex-direction: column; text-align: center; padding: 10px 0; }
+            .nav-links { gap: 10px 15px; font-size: 12px; justify-content: center; }
+            .article-container { grid-template-columns: 1fr; }
+            .article-main-img { height: 200px; }
+            .article-title { font-size: 22px; }
+            .info-section { grid-template-columns: 1fr; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ЯЗЫКОВАЯ ПАНЕЛЬ -->
+<div class="top-bar">
+    <div class="container top-bar-wrap">
+        <button class="lang-btn active" onclick="changeLang('ru')">РУС</button>
+        <button class="lang-btn" onclick="changeLang('kz')">ҚАЗ</button>
+    </div>
+</div>
+
+<!-- ШАПКА САЙТА -->
+<header>
+    <div class="container header-content">
+        <a href="index.html" class="logo-link">
+            <img src="logo_new.jpg" alt="NEWS 135" class="logo-img">
+        </a>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Поиск..." onkeyup="filterNews()">
+        </div>
+    </div>
+</header>
+
+<!-- МЕНЮ НАВИГАЦИИ -->
+<nav class="block-nav">
+    <div class="container">
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="kazakhstan.html">Казахстан</a>
+            <a href="world.html">Мир</a>
+            <a href="sport.html">Спорт</a>
+            <a href="business.html">Бизнес</a>
+            <a href="tech.html">Технологии</a>
+            <a href="#about-sec">О нас</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ -->
+<div class="container main-layout">
+
+    <div class="article-container">
+        
+        <!--ЛЕВАЯ СТОРОНА: ТЕКСТ СТАТЬИ -->
+        <main class="article-body">
+            <div class="article-meta">
+                <span id="art-date">25.06.2026</span>
+                <span id="art-views">👁️ 1,240</span>
+            </div>
+            
+            <h1 class="article-title" id="art-title">Масштабные технологические преобразования в регионах Казахстана</h1>
+            
+            <div class="article-main-img" id="art-img-txt">[ Иллюстрация к материалу ]</div>
+            
+            <div class="article-text">
+                <p id="p-text-1">Развитие региональной инфраструктуры и внедрение современных цифровых решений становятся ключевыми приоритетами для экономического роста. В рамках новых государственных инициатив особое внимание уделяется автоматизации производственных процессов и улучшению качества связи в областных центрах.</p>
+                <p id="p-text-2">Эксперты отмечают, что подобные шаги позволят значительно сократить операционные издержки для местного бизнеса, а также создать новые высокотехнологичные рабочие места для молодых специалистов и выпускников технических вузов страны.</p>
+                <p id="p-text-3">Проекты модернизации уже запущены в пилотном режиме в нескольких областях, и первые результаты демонстрируют положительную динамику. Ожидается, что до конца текущего года цифровые платформы будут полностью интегрированы во все ключевые сферы жизнеобеспечения регионов.</p>
+            </div>
+            
+            <a href="index.html" class="back-link" id="lnk-back">← Назад на Главную</a>
+        </main>
+
+        <!-- ПРАВАЯ СТОРОНА: САЙДБАР -->
+        <aside>
+            <div class="sidebar-title" id="lbl-side">Читайте также</div>
+            <div class="sidebar-content">
+                <ul class="sidebar-list">
+                    <li><a href="#" id="side-1">Новые социальные программы поддержки населения</a></li>
+                    <li><a href="#" id="side-2">Рабочий визит делегации в Астану: итоги встреч</a></li>
+                    <li><a href="#" id="side-3">Изменения курсов валют на утренних торгах KASE</a></li>
+                    <li><a href="#" id="side-4">Открытие индустриальных зон на западе страны</a></li>
+                </ul>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- БЛОКИ: О НАС И КОНТАКТЫ -->
+    <div class="info-section" id="about-sec">
+        <div class="cat-box about-card">
+            <div class="cat-title" id="lbl-about">О нас</div>
+            <p id="ab-p1">News135.kz — независимый информационный портал, оперативно освещающий главные события Казахстана и мира. Наша команда ежедневно следит за новостной повесткой, чтобы предоставлять читателям актуальную, достоверную и объективную информацию.</p>
+            <p id="ab-p2">Мы публикуем новости политики, экономики, общества, технологий, культуры, спорта и других сфер, уделяя особое внимание событиям, которые влияют на жизнь граждан и развитие страны.</p>
+            <p id="ab-p3">Основными принципами работы News135.kz являются точность, беспристрастность и ответственность перед аудиторией. Каждый материал проходит проверку источников, а редакционная политика направлена на соблюдение журналистских стандартов и этических норм.</p>
+            <p id="ab-p4">Наша цель — помочь читателям быстро ориентироваться в потоке информации, понимать суть происходящих событий и получать доступ к качественной журналистике в удобном формате.</p>
+            <p id="ab-p5">News135.kz — новости, которым доверяют.</p>
+        </div>
+        
+        
+
+</div>
+
+<!-- ФУТЕР -->
+<footer class="main-footer">
+    <div class="container footer-wrapper">
+        <div class="contact-block">
+            <div class="cat-title" style="color: #fff; border-left: 5px solid #D62828; padding-left: 10px; margin-bottom: 15px;">Контакты</div>
+            <p>Email: <a href="mailto:aytenova80@bk.ru" style="color: #60a5fa;">aytenova80@bk.ru</a></p>
+            <p>Тел: <a href="tel:+77773456565" style="color: #60a5fa;">+7 777 345 6565</a></p>
+            
+            <div class="social-links" style="display: flex; gap: 10px; margin-top: 15px;">
+                <a href="#" style="background: #25D366; color: white; padding: 8px 12px; border-radius: 50%;"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" style="background: #0088cc; color: white; padding: 8px 12px; border-radius: 50%;"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#" style="background: #E1306C; color: white; padding: 8px 12px; border-radius: 50%;"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <div class="copyright" style="margin-top: 25px; color: #94a3b8; font-size: 13px;">
+                &copy; 2026 NEWS135.KZ. Все права защищены.
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- СКРИПТ ПЕРЕКЛЮЧЕНИЯ ЯЗЫКОВ -->
+<script>
+    function filterNews() {
+   
+    let input = document.getElementById('search-input').value.toLowerCase();
+    
+    
+    let newsItems = document.querySelectorAll('.news-card');
+
+    newsItems.forEach(item => {
+       
+        let title = item.querySelector('h3').textContent.toLowerCase();
+        
+        
+        if (title.includes(input)) {
+            item.style.display = "flex"; 
+        } else {
+            item.style.display = "none"; 
+        }
+    });
+}
+
+
+
+    const translations = {
+        ru: {
+            mMain: "Главная", mKz: "Казахстан", mWorld: "Мир", mSport: "Спорт", mBiz: "Бизнес", mTech: "Технологии", mAbout: "О нас",
+            lblSide: "Читайте также", lnkBack: "← Назад на Главную", imgTxt: "[ Иллюстрация к материалу ]",
+            artTitle: "Масштабные технологические преобразования в регионах Казахстана",
+            p1: "Развитие региональной инфраструктуры и внедрение современных цифровых решений становятся ключевыми приоритетами для экономического роста. В рамках новых государственных инициатив особое внимание уделяется автоматизации производственных процессов и улучшению качества связи в областных центрах.",
+            p2: "Эксперты отмечают, что подобные шаги позволят значительно сократить операционные издержки для местного бизнеса, а также создать новые высокотехнологичные рабочие места для молодых специалистов и выпускников технических вузов страны.",
+            p3: "Проекты модернизации уже запущены в пилотном режиме в нескольких областях, и первые результаты демонстрируют положительную динамику. Ожидается, что до конца текущего года цифровые платформы будут полностью интегрированы во все ключевые сферы жизнеобеспечения регионов.",
+            side1: "Новые социальные программы поддержки населения", side2: "Рабочий визит делегации в Астану: итоги встреч", side3: "Изменения курсов валют на утренних торгах KASE", side4: "Открытие индустриальных зон на западе страны",
+            lblAbout: "О нас", lblContacts: "Контакты",
+            abP1: "News135.kz — независимый информационный портал, оперативно освещающий главные события Казахстана и мира. Наша команда ежедневно следит за новостной повесткой, чтобы предоставлять читателям актуальную, достоверную и объективную информацию.",
+            abP2: "Мы публикуем новости политики, экономики, общества, технологий, культуры, спорта и других сфер, уделяя особое внимание событиям, которые влияют на жизнь граждан и развитие страны.",
+            abP3: "Основными принципами работы News135.kz являются точность, беспристрастность и ответственность перед аудиторией. Каждый материал проходит проверку источников, а редакционная политика направлена на соблюдение журналистских стандартов и этических норм.",
+            abP4: "Наша цель — помочь читателям быстро ориентироваться в потоке информации, понимать суть происходящих событий и получать доступ к качественной журналистике в удобном формате.",
+            abP5: "News135.kz — новости, которым доверяют.",
+            footInfo: "По вопросам сотрудничества, публикации пресс-релизов и размещения рекламы обращайтесь по указанным контактам."
+        },
+        kz: {
+            mMain: "Басты бет", mKz: "Қазақстан", mWorld: "Әлем", mSport: "Спорт", mBiz: "Бизнес", mTech: "Технологиялар", mAbout: "Біз туралы",
+            lblSide: "Сондай-ақ оқыңыз", lnkBack: "← Басты бетке қайту", imgTxt: "[ Материалға сурет ]",
+            artTitle: "Қазақстан өңірлеріндегі ауқымды технологиялық қайта құрулар",
+            p1: "Өңірлік инфрақұрылымды дамыту және заманауи цифрлық шешімдерді енгізу экономикалық өсудің басты басымдықтарына айналуда. Жаңа мемлекеттік бастамалар аясында өндірістік процестерді автоматтандыруға және облыс орталықтарындағы байланыс сапасын жақсартуға ерекше назар аударылуда.",
+            p2: "Сарапшылар мұндай қадамдар жергілікті бизнес үшін операциялық шығындарды айтарлықтай азайтуға, сондай-ақ елдің техникалық жоғары оқу орындарының жас мамандары мен түлектері үшін жаңа жоғары технологиялық жұмыс орындарын құруға мүмкіндік беретінін атап өтті.",
+            p3: "Модернизациялау жобалары бірнеше өңірде пилоттық режимде іске қосылды және алғашқы нәтижелер оң динамиканы көрсетіп отыр. Ағымдағы жылдың соңына дейін цифрлық платформалар өңірлердің тыныс-тіршілігін қамтамасыз ететін барлық негізгі салаларға толық интеграцияланады деп күтілуде.",
+            side1: "Халықты қолдаудың жаңа әлеуметтік бағдарламалары", side2: "Делегацияның Астанаға жұмыс сапары: кездесулер қорытындысы", side3: "KASE таңғы сауда-саттығындағы валюта бағамдарының өзгеруі", side4: "Елдің батысында индустриялық аймақтардың ашылуы",
+            lblAbout: "Біз туралы", lblContacts: "Байланыс",
+            abP1: "News135.kz — Қазақстан мен әлемдегі басты оқиғаларды жедел көрсететін тәуелсіз ақпараттық портал. Біздің команда оқырмандарға өзекті, шынайы және объективті ақпарат беру үшін күн сайын жаңалықтар күн тәртібін бақылап отырады.",
+            abP2: "Біз саясат, экономика, қоғам, технология, мәдениет, спорт және басқа да салалардың жаңалықтарын жариялаймыз, бұл ретте азаматтардың өміріне және елдің дамуына әсер ететін оқиғаларға ерекше назар аударамыз.",
+            abP3: "News135.kz жұмысының негізгі принциптері — дәлдік, бейтараптылық және аудитория алдындағы жауапкершілік. Әрбір материал дереккөздерді тексеруден өтеді, ал редакциялық саясат журналистік стандарттар мен әдеп нормаларын сақтауға бағытталған.",
+            abP4: "Біздің мақсатымыз — оқырмандарға ақпарат ағынында тез бағдар алуға, болып жатқан оқиғалардың мәнін түсінуге және сапалы журналистикаға ыңғайлы форматта қол жетчьзуге көмектесу.",
+            abP5: "News135.kz — сенімді жаңалықтар.",
+            footInfo: "Ынтымақтастық, пресс-релиздерді жариялау және жарнама орналастыру мәселелері бойынша көрсетілген байланыс нөмірлеріне хабарласыңыз."
+        }
+    };
+
+    function changeLang(lang) {
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        const t = translations[lang];
+        document.getElementById('m-main').textContent = t.mMain;
+        document.getElementById('m-kz').textContent = t.mKz;
+        document.getElementById('m-world').textContent = t.mWorld;
+        document.getElementById('m-sport').textContent = t.mSport;
+        document.getElementById('m-biz').textContent = t.mBiz;
+        document.getElementById('m-tech').textContent = t.mTech;
+        document.getElementById('m-about').textContent = t.mAbout;
+        
+        document.getElementById('art-title').textContent = t.artTitle;
+        document.getElementById('art-img-txt').textContent = t.imgTxt;
+        document.getElementById('p-text-1').textContent = t.p1;
+        document.getElementById('p-text-2').textContent = t.p2;
+        document.getElementById('p-text-3').textContent = t.p3;
+        document.getElementById('lnk-back').textContent = t.lnkBack;
+        
+        document.getElementById('lbl-side').textContent = t.lblSide;
+        document.getElementById('side-1').textContent = t.side1;
+        document.getElementById('side-2').textContent = t.side2;
+        document.getElementById('side-3').textContent = t.side3;
+        document.getElementById('side-4').textContent = t.side4;
+
+        document.getElementById('lbl-about').textContent = t.lblAbout;
+        document.getElementById('lbl-contacts').textContent = t.lblContacts;
+        document.getElementById('ab-p1').textContent = t.abP1;
+        document.getElementById('ab-p2').textContent = t.abP2;
+        document.getElementById('ab-p3').textContent = t.abP3;
+        document.getElementById('ab-p4').textContent = t.abP4;
+        document.getElementById('ab-p5').textContent = t.abP5;
+        document.getElementById('txt-foot-info').textContent = t.footInfo;
+    }
+</script>
+
+</body>
+</html>

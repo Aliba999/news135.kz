@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWS 135 .KZ | Бизнес</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Лого слева, поиск справа */
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-container input {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    width: 250px;
+}
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap');
+        :root { --primary-blue: #0B1F3A; --accent-red: #D62828; --bg-gray: #F1F5F9; --text-dark: #1E293B; --border-line: #E2E8F0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-gray); color: var(--text-dark); padding-bottom: 40px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
+        a { color: inherit; text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--accent-red); }
+        .news-card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); transition: transform 0.2s; }
+        .news-card:hover { transform: translateY(-2px); }
+        .top-bar { background: #061324; padding: 8px 0; }
+        .top-bar-wrap { display: flex; justify-content: flex-end; gap: 10px; }
+        .lang-btn { background: rgba(255,255,255,0.1); color: #fff; border: none; padding: 4px 12px; font-size: 12px; font-weight: 600; border-radius: 4px; cursor: pointer; }
+        .lang-btn:hover, .lang-btn.active { background: var(--accent-red); }
+        header { background: var(--primary-blue); padding: 20px 0; }
+        .logo-link { display: inline-block; background: #fff; padding: 6px 12px; border-radius: 6px; }
+        .logo-img { max-height: 65px; display: block; }
+        .block-nav { background: var(--accent-red); padding: 12px 0; }
+        .nav-links { display: flex; justify-content: center; gap: 30px; color: #fff; font-size: 14px; font-weight: 700; text-transform: uppercase; flex-wrap: wrap; }
+        .nav-links a { position: relative; }
+        .nav-links a.active::after, .nav-links a:hover::after { content: ''; display: block; width: 100%; height: 2px; background: #fff; position: absolute; bottom: -4px; left: 0; }
+        .main-layout { display: flex; flex-direction: column; gap: 30px; margin-top: 30px; }
+        .page-title { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--primary-blue); border-left: 6px solid var(--accent-red); padding-left: 15px; }
+        .news-feed { display: flex; flex-direction: column; gap: 20px; }
+        .feed-item { display: flex; gap: 25px; align-items: center; }
+        .feed-thumb { width: 180px; height: 120px; background: #cbd5e1; border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #475569; border: 2px dashed #94a3b8; }
+        .feed-details h3 { font-size: 20px; color: var(--primary-blue); margin-bottom: 8px; }
+        .feed-details p { color: #475569; font-size: 14.5px; line-height: 1.5; }
+        .info-section { display: grid; grid-template-columns: 1.5fr 1fr; gap: 25px; }
+        .cat-box { background: #fff; border-radius: 8px; padding: 20px; }
+        .cat-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--primary-blue); margin-bottom: 15px; border-left: 5px solid var(--accent-red); padding-left: 10px; }
+        .about-text p { margin-bottom: 12px; font-size: 14.5px; line-height: 1.6; color: #475569; }
+        .about-text p:last-child { margin-bottom: 0; }
+        .contacts-card { background: var(--primary-blue) !important; color: #fff; }
+        .contacts-card .cat-title { color: #fff; }
+        .contact-row { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .contact-row span { font-weight: bold; color: #60a5fa; }
+.custom-footer {
+    background: #1e293b; /* Темно-синий цвет, как у вас */
+    color: #fff;
+    padding: 40px 0 20px;
+    margin-top: 50px;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.footer-col { flex: 1; min-width: 250px; }
+.footer-col h3 { margin-bottom: 15px; color: #60a5fa; }
+.footer-col p { font-size: 14px; margin-bottom: 10px; color: #cbd5e1; }
+.social-links { display: flex; gap: 10px; margin-top: 15px; }
+.social-icon {
+    width: 35px; height: 35px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; text-decoration: none; font-weight: bold;
+}
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #334155;
+    margin-top: 30px;
+    padding-top: 20px;
+    font-size: 12px;
+    color: #64748b;
+}
+.custom-footer {
+    background: #0B1F3A; /* Тот самый темно-синий цвет */
+    padding: 30px 0;
+    margin-top: 50px;
+    border-top: 4px solid #D62828; /* Красная линия */
+}
+
+.footer-col {
+    max-width: 400px;
+}
+
+.footer-col p {
+    color: #cbd5e1;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+        @media (max-width: 768px) { .nav-links { gap: 10px 15px; font-size: 12px; } .feed-item { flex-direction: column; align-items: flex-start; } .feed-thumb { width: 100%; height: 160px; } .info-section { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="container top-bar-wrap">
+        <button class="lang-btn active" onclick="changeLang('ru')">РУС</button>
+        <button class="lang-btn" onclick="changeLang('kz')">ҚАЗ</button>
+    </div>
+</div>
+
+<header>
+    <div class="container header-content">
+        <a href="index.html" class="logo-link">
+            <img src="logo_new.jpg" alt="NEWS 135" class="logo-img">
+        </a>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Поиск..." onkeyup="filterNews()">
+        </div>
+    </div>
+</header>
+
+<nav class="block-nav">
+    <div class="container">
+        <div class="nav-links">
+            <a href="index.html" id="m-main">Главная</a>
+            <a href="kazakhstan.html" id="m-kz">Казахстан</a>
+            <a href="world.html" id="m-world">Мир</a>
+            <a href="sport.html" id="m-sport">Спорт</a>
+            <a href="business.html" id="m-biz" class="active">Бизнес</a>
+            <a href="tech.html" id="m-tech">Технологии</a>
+            <a href="index.html#about-sec" id="m-about">О нас</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container main-layout">
+    <h1 class="page-title" id="page-heading">Новости бизнеса</h1>
+
+    <div class="news-feed">
+        <div class="feed-item news-card">
+            <div class="feed-thumb" id="img-1">[ Фото ]</div>
+            <div class="feed-details">
+                <h3><a href="article.html" id="b1-t">Поддержка малого и среднего бизнеса в Казахстане</a></h3>
+                <p id="b1-d">Правительство запускает новые программы льготного кредитования и субсидирования процентных ставок для отечественных предпринимателей в производственной сфере.</p>
+            </div>
+        </div>
+        <div class="feed-item news-card">
+            <div class="feed-thumb" id="img-2">[ Фото ]</div>
+            <div class="feed-details">
+                <h3><a href="article.html" id="b2-t">Тренды цифровизации коммерческого сектора экономики</a></h3>
+                <p id="b2-d">Ведущие эксперты обсудили автоматизацию бизнес-процессов, внедрение ИИ в обслуживание клиентов и переход компаний на электронный документооборот.</p>
+            </div>
+        </div>
+        <div class="feed-item news-card">
+            <div class="feed-thumb" id="img-3">[ Фото ]</div>
+            <div class="feed-details">
+                <h3><a href="article.html" id="b3-t">Инвестиции в логистическую инфраструктуру Евразии</a></h3>
+                <p id="b3-d">Крупные международные инвесторы наращивают объемы финансирования складских и распределительных комплексов на территории Казахстана.</p>
+            </div>
+        </div>
+        <div class="feed-item news-card">
+            <div class="feed-thumb" id="img-4">[ Фото ]</div>
+            <div class="feed-details">
+                <h3><a href="article.html" id="b4-t">Рынок стартапов: новые возможности для молодых инвесторов</a></h3>
+                <p id="b4-d">Внутренний рынок венчурного капитала демонстрирует уверенный рост. Эксперты выделили несколько наиболее перспективных направлений.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-section" id="about-sec">
+        <div class="cat-box">
+            <div class="cat-title" id="lbl-about">О нас</div>
+            <div class="about-text">
+                <p id="ab-p1">News135.kz — независимый информационный портал, оперативно освещающий главные события Казахстана и мира. Наша команда ежедневно следит за новостной повесткой, чтобы предоставлять читателям актуальную, достоверную и объективную информацию.</p>
+                <p id="ab-p2">Мы публикуем новости политики, экономики, общества, технологий, культуры, спорта и других сфер, уделяя особое внимание событиям, которые влияют на жизнь граждан и развитие страны.</p>
+                <p id="ab-p3">Основными принципами работы News135.kz являются точность, беспристрастность и ответственность перед аудиторией. Каждый material проходит проверку источников, а редакционная политика направлена на соблюдение журналистских стандартов и этических норм.</p>
+                <p id="ab-p4">Наша цель — помочь читателям быстро ориентироваться в потоке информации, понимать суть происходящих событий и получать доступ к качественной журналистике в удобном формате.</p>
+                <p><b id="ab-p5">News135.kz — новости, которым доверяют.</b></p>
+            </div>
+        </div>
+       <footer class="custom-footer">
+    <div class="container footer-content">
+        <!-- Блок Контакты -->
+       <footer class="main-footer">
+    <div class="container footer-wrapper">
+        <div class="contact-block">
+            <div class="cat-title" style="color: #fff; border-left: 5px solid #D62828; padding-left: 10px; margin-bottom: 15px;">Контакты</div>
+            <p>Email: <a href="mailto:aytenova80@bk.ru" style="color: #60a5fa;">aytenova80@bk.ru</a></p>
+            <p>Тел: <a href="tel:+77773456565" style="color: #60a5fa;">+7 777 345 6565</a></p>
+            
+            <div class="social-links" style="display: flex; gap: 10px; margin-top: 15px;">
+                <a href="#" style="background: #25D366; color: white; padding: 8px 12px; border-radius: 50%;"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" style="background: #0088cc; color: white; padding: 8px 12px; border-radius: 50%;"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#" style="background: #E1306C; color: white; padding: 8px 12px; border-radius: 50%;"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <div class="copyright" style="margin-top: 25px; color: #94a3b8; font-size: 13px;">
+                &copy; 2026 NEWS135.KZ. Все права защищены.
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function filterNews() {
+   
+    let input = document.getElementById('search-input').value.toLowerCase();
+    
+    
+    let newsItems = document.querySelectorAll('.news-card');
+
+    newsItems.forEach(item => {
+       
+        let title = item.querySelector('h3').textContent.toLowerCase();
+        
+        
+        if (title.includes(input)) {
+            item.style.display = "flex"; 
+        } else {
+            item.style.display = "none"; 
+        }
+    });
+}
+    const translations = {
+        ru: {
+            mMain: "Главная", mKz: "Казахстан", mWorld: "Мир", mSport: "Спорт", mBiz: "Бизнес", mTech: "Технологии", mAbout: "О нас",
+            heading: "Новости бизнеса", img: "[ Фото ]",
+            b1t: "Поддержка малого и среднего бизнеса в Казахстане", b1d: "Правительство запускает новые программы льготного кредитования и субсидирования процентных ставок для отечественных предпринимателей в производственной сфере.",
+            b2t: "Тренды цифровизации коммерческого сектора экономики", b2d: "Ведущие эксперты обсудили автоматизацию бизнес-процессов, внедрение ИИ в обслуживание клиентов и переход компаний на электронный документооборот.",
+            b3t: "Инвестиции в логистическую инфраструктуру Евразии", b3d: "Крупные международные инвесторы наращивают объемы финансирования складских и распределительных комплексов на территории Казахстана.",
+            b4t: "Рынок стартапов: новые возможности для молодых инвесторов", b4d: "Внутренний рынок венчурного капитала демонстрирует уверенный рост. Эксперты выделили несколько наиболее перспективных направлений.",
+            lblAbout: "О нас", lblContacts: "Контакты",
+            abP1: "News135.kz — независимый информационный портал, оперативно освещающий главные события Казахстана и мира. Наша команда ежедневно следит за новостной повесткой, чтобы предоставлять читателям актуальную, достоверную и объективную информацию.",
+            abP2: "Мы публикуем новости политики, экономики, общества, технологий, культуры, спорта и других сфер, уделяя особое внимание событиям, которые влияют на жизнь граждан и развитие страны.",
+            abP3: "Основными принципами работы News135.kz являются точность, беспристрастность и ответственность перед аудиторией. Каждый материал проходит проверку источников, а редакционная политика направлена на соблюдение журналистских стандартов и этических норм.",
+            abP4: "Наша цель — помочь читателям быстро ориентироваться в потоке информации, понимать суть происходящих событий и получать доступ к качественной журналистике в удобном формате.",
+            abP5: "News135.kz — новости, которым доверяют."
+        },
+        kz: {
+            mMain: "Басты бет", mKz: "Қазақстан", mWorld: "Әлем", mSport: "Спорт", mBiz: "Бизнес", mTech: "Технологиялар", mAbout: "Біз туралы",
+            heading: "Бизнес жаңалықтары", img: "[ Сурет ]",
+            b1t: "Қазақстандағы шағын және орта бизнесті қолдау", b1d: "Үкімет өндіріс саласындағы отандық кәсіпкерлер үшін жеңілдікті несиелендіру мен пайыздық мөлшерлемелерді субсидиялаудың жаңа бағдарламаларын іске қосуда.",
+            b2t: "Экономиканың коммерциялық секторын цифрландыру трендтері", b2d: "Жетекші сарапшылар бизнес-процестерді автоматтандыруды, клиенттерге қызмет көрсетуге ЖИ енгізуді және компаниялардың электрондық құжат айналымына көшуін талқылады.",
+            b3t: "Еуразияның логистикалық инфрақұрылымына инвестициялар", b3d: "Ірі халықаралық инвесторлар Қазақстан аумағындағы қойма және тарату кешендерін қаржыландыру көлемін арттыруда.",
+            b4t: "Стартаптар нарығы: жас инвесторлар үшін жаңа мүмкіндіктер", b4d: "Венчурлік капиталдың ішкі нарығы сенімді өсім көрсетуде. Сарапшылар бірнеше ең перспективалы бағыттарды атап өтті.",
+            lblAbout: "Біз туралы", lblContacts: "Байланыс",
+            abP1: "News135.kz — Қазақстан мен әлемдегі басты оқиғаларды жедел көрсететін тәуелсіз ақпараттық портал. Біздің команда оқырмандарға өзекті, шынайы және объективті ақпарат беру үшін күнделікті жаңалықтар ағынын қадағалайды.",
+            abP2: "Біз саясат, экономика, қоғам, технология, мәдениет, спорт және басқа да салалардың жаңалықтарын жариялаймыз, бұл ретте азаматтардың өміріне және елдің дамуына әсер ететін оқиғаларға ерекше назар аударамыз.",
+            abP3: "News135.kz жұмысының негізгі принциптері — дәлдік, бейтараптылық және аудитория алдындағы жауапкершілік. Әрбір материал дереккөздер тексеруінен өтеді, ал редакциялық саясат журналистік стандарттар мен әдеп нормаларын сақтауға бағытталған.",
+            abP4: "Біздің мақсатымыз — оқырмандарға ақпарат ағынында тез бағдар алуға, болып жатқан оқиғалардың мәнін түсінуге және сапалы журналистикаға ыңғайлы форматта қол жеткізуге көмектесу.",
+            abP5: "News135.kz — сенім білдіретін жаңалықтар."
+        }
+    };
+
+    function changeLang(lang) {
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        if(event && event.target) event.target.classList.add('active');
+        const t = translations[lang];
+        document.getElementById('m-main').textContent = t.mMain;
+        document.getElementById('m-kz').textContent = t.mKz;
+        document.getElementById('m-world').textContent = t.mWorld;
+        document.getElementById('m-sport').textContent = t.mSport;
+        document.getElementById('m-biz').textContent = t.mBiz;
+        document.getElementById('m-tech').textContent = t.mTech;
+        document.getElementById('m-about').textContent = t.mAbout;
+        document.getElementById('page-heading').textContent = t.heading;
+        document.getElementById('b1-t').textContent = t.b1t;
+        document.getElementById('b1-d').textContent = t.b1d;
+        document.getElementById('b2-t').textContent = t.b2t;
+        document.getElementById('b2-d').textContent = t.b2d;
+        document.getElementById('b3-t').textContent = t.b3t;
+        document.getElementById('b3-d').textContent = t.b3d;
+        document.getElementById('b4-t').textContent = t.b4t;
+        document.getElementById('b4-d').textContent = t.b4d;
+        document.getElementById('lbl-about').textContent = t.lblAbout;
+        document.getElementById('lbl-contacts').textContent = t.lblContacts;
+        document.getElementById('ab-p1').textContent = t.abP1;
+        document.getElementById('ab-p2').textContent = t.abP2;
+        document.getElementById('ab-p3').textContent = t.abP3;
+        document.getElementById('ab-p4').textContent = t.abP4;
+        document.getElementById('ab-p5').textContent = t.abP5;
+        document.getElementById('img-1').textContent = t.img;
+        document.getElementById('img-2').textContent = t.img;
+        document.getElementById('img-3').textContent = t.img;
+        document.getElementById('img-4').textContent = t.img;
+    }
+</script>
+</body>
+</html>
